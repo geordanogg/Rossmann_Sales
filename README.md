@@ -1,12 +1,5 @@
-<<<<<<< HEAD
 ![rossmann_sales_cover](rossmann_cover.png)
 ### Rossmann Store Sales
-=======
-![rossmann_sales_cover](https://user-images.githubusercontent.com/51702682/148266208-eabd73de-29d4-4c7b-aa87-20f883bfd408.png)
-
-### Rossmann Store Sales
-
->>>>>>> b2f839348560cdb1e1472a833b6a7515ba8ceabe
 ## O Contexto do Problema de Negócio
 
 > Disclaimer: O Contexto a seguir, é completamente fictício, a empresa, o contexto, o CEO, as perguntas de negócio existem somente na minha imaginação. 
