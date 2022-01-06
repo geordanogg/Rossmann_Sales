@@ -14,4 +14,4 @@ Como resultado para esse projeto é esperada a previsão, pada cada loja, das ve
 
 
 ## O planejamento da solução
-[Detalhes do projeto](https://github.com/geordanogg/Rossman_Sales/tree/master/rossmann_sales)
+[Detalhes do projeto](https://github.com/geordanogg/Rossmann_Sales/tree/master/rossmann_sales)
