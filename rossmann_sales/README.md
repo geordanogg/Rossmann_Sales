@@ -1,129 +1,157 @@
-# **BUSINESS UNDERSTANDING**
+# **ENTENDIMENTO DO NEGÓCIO**
 
-## What is the company?
+## **QUAL É A EMPRESA?**
 
-Rossmann.
+A Rossmann é uma das maiores redes de drogarias da Europa, com cerca de 56.200 funcionários e mais de 4.000 lojas. Em 2019, a Rossmann teve um faturamento de mais de € 10 bilhões na Alemanha, Polônia, Hungria, República Tcheca, Turquia, Albânia, Kosovo e Espanha.
 
-## What is its business model?
+## **QUAL É O MODELO DE NEGÓCIO?**
 
-Rossmann operates over 3,000 drug stores in 7 European countries. Its products range includes up to 21,700 items and can vary depending on the size of the shop and the location. In addition to drugstore goods with a focus on skin, hair, body, baby and health, Rossmann also offers promotional items ("World of Ideas"), pet food, a photo service and a wide range of natural foods and wines. 
+A Rossmann é uma das maiores redes de drogarias da Europa, operando mais de 4.000 drogarias em 8 países. Sua gama de produtos inclui até 21.700 itens e pode variar dependendo do tamanho da loja e da localização. Além de produtos de drogaria com foco em pele, cabelo, corpo, bebê e saúde, a Rossmann também oferece itens promocionais ("Mundo das Ideias"), pet food, serviço de fotos e uma ampla variedade de alimentos e vinhos naturais. Existe também uma gama de perfumes com cerca de 200 marcas comerciais.
 
-## What is the business problem the company is facing?
+## **QUAL É O PROBLEMA DE NEGÓCIO?**
 
-Rossmann store managers need daily sales predictions for up to six weeks in advance so as to plan infrastructure investments in their stores (will next six weeks sales be high enough to balance infrastructure investment?).
+Os gerentes de loja da Rossmann precisam de previsões diárias de vendas com até seis semanas de antecedência para planejar os investimentos em infraestrutura em suas lojas (as vendas nas próximas seis semanas serão altas o suficiente para equilibrar o investimento em infraestrutura?).
 
-## What is the business solution that this project has to deliver?
+# **ENTENDIMENTO DO PROBLEMA**
 
-For each store, the daily sales predictions for the next six weeks.
+## **QUAL O DESAFIO QUE ESTE PROJETO VISA SUPERAR?**
 
-REFERENCES:
+Produzir um modelo que seja capaz de prever o faturamento das próximas seis semanas para cada loja da rede.
+
+**Referências:**
 
 https://www.kaggle.com/c/rossmann-store-sales
+
 https://en.wikipedia.org/wiki/Rossmann_(company)
 
 # **BUSINESS ASSUMPTIONS**
 
-## Hypothesis
+**HYPOTHESIS**
 
 In order to make predictions for the next six weeks, Rossmann company has to provide data about its stores for this time interval. Such data, for each store, must include: store model, store assortment level and if the given store will be on continuous promotion.
 
-References:
+**Referências:**
 
 https://www.kaggle.com/c/rossmann-store-sales
 
-# **SOLUTION STRATEGY**
+
+# **CICLO DO PROJETO**
 
 ![crisp-ds](references/crisp.png)
 
-## Step 01. Data Extraction:
-For the available data, check files and data fields description. Then load data from CSV files and merge different tables.
+## Step 00. Settings and Data Extraction
+* Importação das bibliotecas, pacotes e funções necessárias.
+* Carregamento e verificação dos dados disponíveis através de um arquivo CSV.
 
-## Step 02. Data Description:
-Rename columns and check the number of rows in the table (does it requires big data tools?). Convert data types for some columns and fill out NA (not-available) values. Then use statistics metrics to identify data outside the scope of business.
+## Step 01. Data Description:
+* Renomeação das colunas e verificação do tamanho do dataset (avaliar a necessidade de ferramentas para tratar grande volume de dados).
+* Verificação dos tipos de dados em cada coluna e mudanças de tipo que se façam necessárias para melhor tratamento pelos algoritmos posteriormente.
+* Verificação de dados faltantes e decisão de como tratá-los (remoção, reamostragem artificial, inviabilidade da solução).
+* Breve descrição estatística dos atributos numéricos e categóricos a fim de detectar anomalias que fogem do escopo do problema, bem como a presença de possíveis outliers que irão impactar a performance dos algoritmos posteriormente.
 
-## Step 03. Feature Engineering:
-Create a hypothesis list to check on the fifth step (EDA). Then apply data transformations on the required columns.
+## Step 02. Feature Engineering:
+* Levantamento de uma lista de hipóteses de negócio.
+* Criação de variáveis (features) relevantes para a resolução do problema.
 
-## Step 04. Data Filtering:
-Filter rows and select columns that do not contain information for modelling or do not match the scope of the business, such as predict sales for a closed store.
+## Step 03. Data Filtering:
+* Filtragem de linhas e deleção de colunas que não contém informações relevantes para a modelagem ou não ajudam a resolver o problema.
 
-## Step 05. Exploratory Data Analysis:
-Analyse each variable alone and then the relationship among variables. Then, explore the data further to validate the hypothesis list and raise insights.
+## Step 04. Exploratory Data Analysis:
+* Análise isolada de cada feature e sua relação com as demais.
+* Exploração dos dados a fim de validar hipóteses de negócio e obter insights a respeito do negócio.
 
-## Step 06. Data Preparation:
-Split data into train and validation and test. Then, prepare data so that the Machine Learning models can more easily learn and perform more accurately.
+## Step 05. Data Preparation:
+* Preparação dos dados a fim de ajudar os modelos de machine-learning a aprenderem e performarem com maior facilidade. Aqui são feitas Normalização, Reescala e Transformação dos dados.
 
-## Step 07. Feature Selection:
-Select the most signiﬁcant attributes for training the model.
+## Step 06. Feature Selection:
+* Separação dos dados em treino e validação.
+* Seleção das features mais relevantes para treinar os modelos. Aqui se usam algoritmos de seleção de features como o Boruta.
 
-## Step 08. Machine Learning Modelling:
-Test different Machine Learning models and select the one with the best performance in prediction sales according to the selected attributes.
+## Step 07. Machine Learning Modelling:
+* Teste de diferentes modelos de Machine Learning.
+* Seleção do modelo que apresenta melhor performance com base em métricas apropriadas que mitigam os erros.
 
-## Step 09. Hyperparameter Fine Tuning:
-Choose the best values for each parameter of the selected ML model.
+## Step 08. Hyperparameter Fine Tuning:
+* Escolha dos melhores valores para cada parâmetro do modelo escolhido que maximizam a sua performance.
 
-## Step 10. Performance Evaluation and Interpretation:
-Compare the training and the learning performance (overfitting vs underfitting). Then test the ML model on data equivalent to production data (generalization performance) and convert the ML performance into business results.
+## Step 09. Performance Evaluation and Interpretation:
+* Comparação entre as previsões dadas pelo modelo e os dados de validação (avaliação da sua capacidade de aprendizado) a fim de detectar desvios de comportamento (overfitting e underfitting)
+* Teste do Modelo treinado com dados equivalentes aos dados de produção (avaliação da sua capacidade de generalização) e conversão da performance do modelo em resultados de negócios (financeiros)
 
-## Step 11. Deployment:
-Create APIs (Application Programming Interface) to make predictions available on internet requests. Then, for the final user, create a Telegram bot where the user types the number of store and the bot answer with the sales prediction for this given store in the next six weeks. Finally, create a data app where the user could check the sales prediction over these six weeks and also read the entire project overview.
+## Step 10. Deployment:
+* Criação da API (Application Programming Interface) para disponibilizar previsões em solicitações de internet. A API ficará hospedada num servidor na nuvem.(Heroku)
+* Em seguida, para o usuário final, criar um bot do Telegram onde o usuário digita o número da loja e o bot responde com a previsão de vendas dessa determinada loja nas próximas seis semanas.
 
 # **TOP 3 INSIGHTS**
 
-## H1. Different store assortments contribute differently to sales revenue.
+## H2. Lojas com competidores mais próximos deveriam vender menos.
 
-> H1 IS TRUE. Different store assortments contribute differently to sales revenue and **'extra' assortment has higher median sales**.
-    
-![h1_hypothesis](references/h1_hypothesis.png)
-    
+> Falsa: Lojas com COMPETIDORES MAIS PRÓXIMOS vendem MAIS.
 
-## H2. The nearer to competitors, the lower the sales revenue.
+![h2_hypothesis](references/h2_hypothesis.png)
 
-> H2 IS FALSE. The nearer to competitors, the higher the sales revenue tends to be.
+**INSIGHT**: a existência de competidores próximos parece estimular o consumo, talvez pelo fato de que os clientes prefiram comprar em regiões onde há mais opções de lojas e a oferta de produtos é maior.
 
-![h2_hypothesis](references/h2_hypothesis.png) 
+## H6. Lojas com mais promoções consecutivas deveriam vender mais.
 
+> Falsa: Lojas com MAIS PROMOÇÕES CONSECUTIVAS vendem MENOS.
 
-## H3. The sales revenue is higher on weekends.
+![h6_hypothesis](references/h6_hypothesis.png)
 
-> H3 IS FALSE. From Monday till Thursday, the sales revenue is higher than from Friday till Sunday.
+**INSIGHT**: o prolongamento de promoções parece causar um efeito negativo na percepção de valor dos produtos pelos clientes.  
 
-![h9_hypothesis](references/h9_hypothesis.png) 
+## - H7. Lojas abertas durante o feriado de Natal deveriam vender mais do que nos demais feriados.
+
+> Falsa:  Lojas abertas NO FERIADO DE NATAL vendem MENOS do que nos demais feriados.
+
+![h7_hypothesis](references/h7_hypothesis.png)
+
+**INSIGHT**: o tipo de assortment das lojas parece não influenciar o consumo dos clientes durante o feriado natalino.
+
+# **MACHINE LEARNING RESULTS**
+
+> Após o treinamento de alguns modelos de ML, foi feita uma avaliação comparativa entre os modelos com base nas métricas de estimativas de erros escolhidas para este problema de regressão. As métricas foram o MAE (Mean Absolute Error), o MAPE (Mean Absolute Percentage Error) e o RMSE (Root Mean Square Error).
+
+![ml_results](references/ml_results.png)
+
+> Decidindo pelo uso do modelo de XGBoost, devido sua performance ser razoavelmente semelhante ao modelo mais acurado, mas cujo tamanho que ocupa em armazenamento ser significativamente menor, foi feito um processo de refinamento dos seus parâmetros (Fine Tuning) a fim de melhorar um pouco mais a sua performance (diminuir os erros de suas previsões)
+
+![model_tunned](references/model_tunned.png)
+
+> Pode-se avaliar também a capacidade de aprendizado do modelo ao se aplicá-lo aos dados de validação, acompanhando o quão próximo ele acerta as previsões de lojas que já sabemos o montante faturado mas o modelo ainda não viu os dados. Este processo visa detectar e corrigir pośsiveis problemas com overfitting. Os gráficos abaixo demonstram que o modelo possui um erro percentual médio (MAPE) em torno de 10%, quando ele erra para mais ou para menos do valor real das vendas ao longo das últimas 6 semanas.
+
+![model_fit](references/model_fit.png)
+
 
 # **BUSINESS RESULTS**
 
-## You can check the Telegram bot on the following link
+> Os resultados obtidos pelas previsões do modelo escolhido (XGBoost) levam em conta o melhor e o pior cenários, calculados pela variação do erro MAE (Mean Absolute Error). A Tabela a seguir mostra os valores somados de faturamento de todas as lojas previstos para as pŕoximas 6 semanas, considerando o pior cenário (quando o modelo superestima o valor das vendas) e o melhor cenário (quando o modelo subestima o valor das vendas)
 
-https://www.youtube.com/watch?v=6yQgYIjbQog
+| Cenários  |  Valores  |
+| --------- | -------- |
+|  Predições |  $ 283.951.842,24 |
+|  Pior |  $ 283.203.495,28 |
+|  Melhor |  $ 284.700.189,21 |
 
-## You can check the data App on the following link
 
-https://youtu.be/l7lt7gji7oY
+# **BUSINESS SOLUTION**
 
+**A seguinte imgagem explica a arquitetura de deploy utilizada na solução deste problema**
 
-# **DEPLOYMENT**
+![deployment](references/deploy_rossmann.png)
 
-**Telegram Bot**
-To make predictions more straightforward for the final user, a Telegram bot was created so the user just needs to type the number of the store and the bot will quickly answer the sales prediction for this given store in the next six weeks. 
+## **Telegram Bot**
 
-You can check how easy is to get predictions via this Telegram bot by watching the following video:
-https://youtu.be/l7lt7gji7oY
+Para tornar as previsões mais simples para o usuário final, foi criado um bot do Telegram para que o usuário só precise digitar o número da loja e o bot responderá rapidamente a previsão de vendas dessa determinada loja nas próximas seis semanas.
 
-**Streamlit**
-If the final user wants more detailed information about this six weeks prediction, he (she) could get further details on a data App.
-
-This data App has information on sales prediction over these six weeks. Besides, the user can also read the entire project overview to understand further how this prediction is made.
-
-You can check this data App on the following link:
-https://youtu.be/l7lt7gji7oY
 
 # **CONCLUSIONS**
 
-It took me a while to go from the very beginning till the very end of the project (actually, it took me about two weeks). 
+It took me a while to go from the very beginning till the very end of the project (actually, it took me about two weeks).
 
 **Even within just two weeks, we can easily see that Data Science projects could deploy straightforward solutions to support business team decisions, making these decisions not more precise, but also easier**.
 
-# - LESSONS LEARNED
+# **LESSONS LEARNED**
 
 **How to do an end-to-end Data Science project.**
 
@@ -145,6 +173,6 @@ It took me a while to go from the very beginning till the very end of the projec
 
 **API**: implement data validation on API requests to make it less error-prone and more easily debugged in case of error.
 
-**Machine Learning Models**: test more ML models to find one with better results. 
+**Machine Learning Models**: test more ML models to find one with better results.
 
 **Code**: review the whole code once more to make it clearer and more efficient (faster and less resource-intensive).
